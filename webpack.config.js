@@ -57,14 +57,14 @@ module.exports = {
   entry: {
     'angular2': [
       // Angular 2 Deps
-      '@reactivex/rxjs',
-      'zone.js',
-      'reflect-metadata',
+      //'@reactivex/rxjs',
+      //'zone.js',
+      //'reflect-metadata',
       // to ensure these modules are grouped together in one file
-      'angular2/angular2',
-      'angular2/core',
-      'angular2/router',
-      'angular2/http'
+      //'angular2/angular2',
+      //'angular2/core',
+      //'angular2/router',
+      //'angular2/http'
     ],
     'app': [
       // App
@@ -92,7 +92,7 @@ module.exports = {
 
   resolve: {
     root: __dirname,
-    extensions: ['','.ts','.js','.json'],
+    extensions: ['','.js','.json'],
     alias: {
       'rx': '@reactivex/rxjs'
       // 'common': 'src/common',
@@ -114,23 +114,8 @@ module.exports = {
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw' },
 
-      // Support for .ts files.
-      { test: /\.ts$/,    loader: 'ts',
-        query: {
-          'ignoreDiagnostics': [
-            // 2300, // 2300 -> Duplicate identifier
-            // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
-          ]
-        },
-        exclude: [
-          /\.min\.js$/,
-          /\.spec\.ts$/,
-          /\.e2e\.ts$/,
-          /web_modules/,
-          /test/,
-          /node_modules/
-        ]
-      }
+      // Support for es6 files.
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
